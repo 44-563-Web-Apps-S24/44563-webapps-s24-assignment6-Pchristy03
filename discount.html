@@ -10,34 +10,37 @@
 
 <form>
     <label for="price">Enter price per </label>
-    <input type ="number" id="price" name="form1_age" value=10> <br>
+    <input type ="number" id="price" value=10> <br>
 
     <label for="count">Enter the number of items </label>
-    <input type ="text" id="count" name="form1_nick" value=9> <br>
+    <input type ="number" id="count" value=9> <br>
 
-    <label for=""reductions>Enter the discount precent</label>
-    <input type="number" id="reductions" onclick="resolveForm()" value=5>
+    <label for="reductions">Enter the discount precent</label>
+    <input type="number" id="reductions" value=5> <br>
 
-    <input>
+    <input type="button" value="Show Total" onclick="discount()">
 </form>
-
 
 <p id="result">This text will be replaced </p>
 
 <script> 
 
-function resolveForm (){
-    console.log("Getting form values")
-    age = document.getElementById("form1_age").value
-    nick = document.getElementById("form1_nick").value
-    confirmed = confirm("Are these the values? "+age+" and "+nick)
-    
-    out = document.getElementById("result")
-    if(confirmed){
-        out.innerHTML = "Values were confirmed"
-    } else {
-        out.innerHTML = "Values were not confirmed"
+function discount(){
+    let myOutput = ""
+    let result = document.getElementById("result")
+    let value = document.getElementById("price").value
+    let count = document.getElementById("count").value
+    let discount = document.getElementById("reductions").value
+
+    for(i = 0; i < 5; i++) {
+        let newdiscount = 1 - ((parseFloat(discount) + i) / 100);
+        let total = value * count
+
+        total = total * newdiscount
+        myOutput = myOutput + " " + (parseFloat(discount) + i) + "% is " + total.toFixed(1) + "; "
     }
+
+    result.innerHTML = "Totals are: " + myOutput
 }
 </script>
 
