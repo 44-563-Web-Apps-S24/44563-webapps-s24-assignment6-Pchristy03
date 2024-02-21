@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <title>The Animal Game</title>
+ 
+<body>
+
+<h2>Animal game by Parker Christy</h2>
+
+<form>
+    <label for="secret">The hidden animal type </label>
+    <input type ="password" id="secret" value="Chicken"> <br>
+
+    <label for="check">Guess the animal </label>
+    <input type ="text" id="check"> <br>
+
+    <input type="button" onclick="checkAnimal()" value="Check the guess">
+</form>
+
+
+<p id="result">This text will be replaced </p>
+
+<script> 
+
+let wrong = 0;
+let correct = 0;
+
+result = getElementById('result')
+function checkAnimal (){
+    console.log("Getting form values")
+
+    hidden = document.getElementById("secret").value
+    to_check = document.getElementById("check").value
+
+    if(hidden == to_check){
+        correct = correct + 1
+        alert("Ruff ruff")
+    } else {
+        wrong = wrong + 1
+        alert("Grrrr")
+    }
+
+    result.innerHTML = "Correct: " + correct + " Incorrect: " + wrong;
+
+
+}
+</script>
+
+<div>
+    <img src="./coke.jpeg" style="height: 150px; width: 150px;" onclick="selectImage()" id="drink"/>
+</div>
+
+<script>
+    let useImage = 1;
+
+    function selectImage() {
+        let image = document.getElementById("drink");
+
+        switch (useImage) {
+            case 1:
+                image.src = "./rootbeer.jpeg"
+                useImage = useImage + 1
+                break;
+            case 2:
+                image.src = "./tea.jpeg"
+                useImage = useImage + 1
+                break;
+            case 3:
+                image.src = "./coke.jpeg"
+                useImage = 1
+                break;
+
+        }
+    }
+</script>
+
+</body>
+</html> 
