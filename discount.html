@@ -21,9 +21,57 @@
     <input type="button" value="Show Total" onclick="discount()">
 </form>
 
-<p id="result">This text will be replaced </p>
+<p id="result">New amount will display here </p>
+
+<form>
+    <input name="option" type="radio" onclick="chooseOp(this)" value="sum" id="sum">
+    <label for="">sum</label>
+
+    <input name="option" type="radio" onclick="chooseOp(this)" value="multiply" id="mult">
+    <label>mult</label>
+
+    <input name="option" type="radio" onclick="chooseOp(this)" value="exponent" id="exp">
+    <label>exp</label>
+</form>
+
+<p id="second_result">Computation will display here </p>
 
 <script> 
+
+function chooseOp(checkbox) {
+    let total = 0
+    let price = document.getElementById("price").value
+    let discount = document.getElementById("reductions").value / 100
+
+    let sum = document.getElementById("sum").checked
+    let mult = document.getElementById("mult").checked
+    let exp = document.getElementById("exp").checked
+
+    var checkboxes = document.getElementsByName(checkbox.name);
+    checkboxes.forEach((box) => {
+        if (box !== checkbox) box.checked = false;
+    });
+    
+    let result = document.getElementById("second_result")
+
+    if (sum) {
+        total = parseFloat(price) + parseFloat(discount)
+        result.innerHTML = "Sum of " + price + " and " + discount + " is " + total
+        total = 0
+    }
+
+    if (mult) {
+        total = parseFloat(price) * parseFloat(discount)
+        result.innerHTML = "Product of " + price + " and " + discount + " is " + total
+        total = 0
+    }
+
+    if (exp) {
+        total = (parseFloat(price)**parseFloat(discount)).toFixed(3)
+        result.innerHTML = price + " to the power of " + discount + " is " + total
+        total = 0
+    }
+}
 
 function discount(){
     let myOutput = ""
