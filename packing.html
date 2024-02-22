@@ -24,17 +24,17 @@
 <p id="packing_result">Packing results will display here </p>
 
 <form>
-    <label for="form1_age">What is your age </label>
-    <input type ="number" id="form1_age" name="form1_age" min=10 max=50 step=2 value=30> <br>
+    <label for="month">Enter travel month </label>
+    <input type ="text" id="month" name="month" value="May"> <br>
 
-    <label for="form1_nick">What is your nickname </label>
-    <input type ="text" id="form1_nick" name="form1_nick" autofocus> <br>
+    <label for="price">Enter price </label>
+    <input type ="text" id="price" name="price"> <br>
 
-    <input type="button" onclick="resolveForm()" value="Get values from form">
+    <input type="button" onclick="updatePack()" value="Update the pack">
 </form>
 
 
-<p id="result">This text will be replaced </p>
+<p id="update_result">Updated packing results will display here </p>
 
 <script>
 
@@ -42,7 +42,6 @@
 
 function selectPack() {
     my_pack = {}
-
     let checkboxes = document.getElementsByName("option")
 
     checkboxes.forEach((box) => {
@@ -59,8 +58,21 @@ function selectPack() {
         formattedText = formattedText + v + " : " + my_pack[v] + " " 
     }
     result.innerHTML = formattedText
+}
 
+function updatePack() {
+    let month = document.getElementById("month").value
+    let price = document.getElementById("price").value
 
+    my_pack["month"] = month
+    my_pack["price"] = price
+
+    let result = document.getElementById("update_result")
+    let formattedText = ""
+    for (let v in my_pack) {
+        formattedText = formattedText + v + " : " + my_pack[v] + " " 
+    }
+    result.innerHTML = formattedText
 }
 </script>
 
