@@ -13,11 +13,11 @@
     <label for="check">Guess the animal </label>
     <input type ="text" id="check"> <br>
 
-    <input type="button" onclick="checkAnimal()" value="Check the guess">
+    <input id="animalcheck" type="button" onclick="checkAnimal()" value="Check the guess">
 </form>
 
 
-<p id="result">This text will be replaced </p>
+<div id="result">This text will be replaced </div>
 
 <script> 
 
@@ -36,12 +36,18 @@ function checkAnimal (){
         alert("Ruff ruff")
     } else {
         wrong = wrong + 1
-        alert("Grrrr")
+        if (correct < wrong) {
+            let check = document.getElementById("animalcheck")
+            check.onclick = tooMany()
+        } else {
+            alert("Grrrr")
+        }
     }
-
     result.innerHTML = "Correct: " + correct + " Incorrect: " + wrong;
+}
 
-
+function tooMany() {
+    alert("Sorry, too many wrong guesses")
 }
 </script>
 
